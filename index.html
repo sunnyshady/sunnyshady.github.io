@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Q1 Countdown</title>
+  </head>
+  <body>
+    <div>
+        <h1 id="clock"></h1>
+    </div>
+  </body>
+  <script>
+      var clock = document.getElementById("clock");
+      var endDate = new Date("2018-03-31 23:59:59").getTime();
+      var daysInMS = 1000 * 60 * 60 * 24;
+      var hoursInMS = 1000 * 60 * 60;
+      var minutesInMS = 1000 * 60;
+
+      setInterval(function() {
+          // get diff in MS
+          var diff = endDate - new Date().getTime();
+          var days = Math.floor(diff / daysInMS);
+          diff = diff - (days * daysInMS);
+          var hours = Math.floor(diff / hoursInMS);
+          diff = diff - (hours * hoursInMS);
+          var minutes = Math.floor(diff / minutesInMS);
+          diff = diff - (minutes * minutesInMS);
+          var seconds = Math.floor(diff / 1000);
+
+          clock.textContent = `${days} Days ${hours}:${minutes}:${seconds}`;
+      }, 1000);
+  
+  </script>
+</html>
