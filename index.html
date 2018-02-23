@@ -3,14 +3,39 @@
   <head>
     <meta charset="UTF-8">
     <title>Q1 Countdown</title>
+    <style>
+        body {
+          /* background: repeating-linear-gradient(#F69B34, #fff 10%, #3B6E9D 20%); */
+          background: repeating-radial-gradient(#F69B34, #fff 10%, #3B6E9D 15%);
+          color: black;
+          height: 100vh;
+          width: 100vw;
+        }
+        .container {
+          width: 50%;
+          margin: 0 auto;
+          text-align: center;
+        }
+        #intro {
+          font-weight: lighter;
+        }
+    </style>
   </head>
   <body>
-    <div>
+    <div class="container">
+        <h1 id="intro">Countdown Until Factom Announces Something</h1>
         <h1 id="clock"></h1>
     </div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
   <script>
+      var f = function(number) {
+        number = number.toString();
+        if (number.length === 1) {
+          number = "0" + number;
+        }
+        return number;
+      }
       var clock = document.getElementById("clock");
       var endDate = moment("2018-03-31 23:59:59");
       var daysInMS = 1000 * 60 * 60 * 24;
@@ -28,8 +53,8 @@
           diff = diff - (minutes * minutesInMS);
           var seconds = Math.floor(diff / 1000);
 
-          var str = days.toString() + " Days " + hours.toString() + ":" + 
-            minutes.toString() + ":" + seconds.toString();
+          var str = f(days) + " Days " + f(hours) + " Hours " + 
+            f(minutes) + " Minutes " + f(seconds) + " Seconds";
 
           clock.textContent = str;
       }, 1000);
