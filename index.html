@@ -9,16 +9,17 @@
         <h1 id="clock"></h1>
     </div>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
   <script>
       var clock = document.getElementById("clock");
-      var endDate = new Date("2018-03-31 23:59:59").getTime();
+      var endDate = moment("2018-03-31 23:59:59");
       var daysInMS = 1000 * 60 * 60 * 24;
       var hoursInMS = 1000 * 60 * 60;
       var minutesInMS = 1000 * 60;
 
       setInterval(function() {
           // get diff in MS
-          var diff = endDate - new Date().getTime();
+          var diff = endDate.diff(moment());
           var days = Math.floor(diff / daysInMS);
           diff = diff - (days * daysInMS);
           var hours = Math.floor(diff / hoursInMS);
@@ -27,10 +28,10 @@
           diff = diff - (minutes * minutesInMS);
           var seconds = Math.floor(diff / 1000);
 
-          var string = days.toString() + " Days " + hours.toString() + ":" + 
+          var str = days.toString() + " Days " + hours.toString() + ":" + 
             minutes.toString() + ":" + seconds.toString();
 
-          clock.textContent = string;
+          clock.textContent = str;
       }, 1000);
   
   </script>
